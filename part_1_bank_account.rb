@@ -45,18 +45,30 @@ class BankAccount
   # STEP 9:
   # This needs to be a class method because it does not pertain to any single, specific account. Add a class method called interest_time that iterates through all accounts and increases their balances according to @@interest_rate.
   @@interest_time(account)
-
     @@accounts.each do
-
       interest_div = @@interest_rate / 100.0  # changes 2.5 to 0.025
-
       interest_add = interest_div + 1         # changes 0.025 to 1.025
-
       account = account * interest_add
-
-      puts "Account accumulated interest at a rate of #{@@interest_rate}%. New balance is $#{account}."
-
+      puts "Account accumulated interest at a rate of #{@@interest_rate}%. New balance is $#{account}." # This is to test the output.
     end#do
   end#@@interest_time
 
 end#BankAccount
+
+# Example output from Alexa:
+my_account = BankAccount.create
+your_account = BankAccount.create
+puts my_account.balance # 0
+puts BankAccount.total_funds # 0
+my_account.deposit(200)
+your_account.deposit(1000)
+puts my_account.balance # 200
+puts your_account.balance # 1000
+puts BankAccount.total_funds # 1200
+BankAccount.interest_time
+puts my_account.balance # 202.0
+puts your_account.balance # 1010.0
+puts BankAccount.total_funds # 1212.0
+my_account.withdraw(50)
+puts my_account.balance # 152.0
+puts BankAccount.total_funds # 1162.0
