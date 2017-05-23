@@ -1,7 +1,8 @@
 class BankAccount
 
-  @@interest_rate = 0.0
+  @@interest_rate = 2.5
   # a float representing the interest rate for all the accounts in the bank
+  # ----- I chose 2.5 artibrarily
 
   @@accounts = []
   # starts as an empty array. This will eventually store
@@ -38,12 +39,24 @@ class BankAccount
   # STEP 8:
   # Add a class method called total_funds that returns the sum of all balances across all accounts in @@accounts.
   @@total_funds(sum_of_all_balances)
-    sum_of_all_balances = @@accounts.sum 
+    sum_of_all_balances = @@accounts.sum
   end#@@total_funds
 
   # STEP 9:
   # This needs to be a class method because it does not pertain to any single, specific account. Add a class method called interest_time that iterates through all accounts and increases their balances according to @@interest_rate.
+  @@interest_time(account)
 
+    @@accounts.each do
 
+      interest_div = @@interest_rate / 100.0  # changes 2.5 to 0.025
+
+      interest_add = interest_div + 1         # changes 0.025 to 1.025
+
+      account = account * interest_add
+
+      puts "Account accumulated interest at a rate of #{@@interest_rate}%. New balance is $#{account}."
+
+    end#do
+  end#@@interest_time
 
 end#BankAccount
