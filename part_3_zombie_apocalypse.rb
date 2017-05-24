@@ -71,7 +71,31 @@ class Zombie
     increase_plague_level
   end#self.new_day
 
-  
+  def outrun_zombie?
+    # This instance method should use @@max_speed to generate a random number that represents how fast you manage to run from this particular zombie.
+    your_running_speed = rand(@@max_speed)
+    # This method should return true if your speed is greater than the zombie's and false otherwise.
+    if your_running_speed >= @@max_speed
+      return true
+      puts "The zombie couldn't catch you!"
+    else
+      return false
+      puts "The zombie was faster than you, and you got eaten."
+    end#if
+  end#outrun_zombie?
+
+  def survive_attack?
+    # This instance method should use @@max_strength to generate a random number that represents how well you are able to fight off this zombie. This method should return true if your speed is greater than the zombie's and false otherwise.
+    
+  end#survive_attack?
+
+  def encounter
+    #     This instance method represents you coming across a zombie! This can end in three possible outcomes: 1. escaping unscathed 2. being killed by the zombie 3. catching the plague and becoming a zombie yourself.
+    #
+    # This method should call outrun_zombie? (see below) and survive_attack? (see also below) to determine which scenario applies. In the case that you are turned into a zombie (ie. you don't outrun the zombie but you aren't killed by it), create a new zombie object (that's you!) and add it to the @@horde.
+    #
+    # In all three cases you should return a string that describes what happened to you in the encounter (eg. "You escaped!").
+  end#encounter
 
 
 end#Zombie
