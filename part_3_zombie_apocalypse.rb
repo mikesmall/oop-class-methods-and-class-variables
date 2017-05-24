@@ -4,6 +4,9 @@
 # So rand(5) would return a random number between 0 and 4,
 # and rand(10) would return a number between 0 and 9.
 class Zombie
+
+  attr_accessor :zombie_speed, :zombie_strength
+
   # @@horde should start as an empty array and will eventually contain the collection of all zombies.
   @@horde = []
   # @@plague_level should start at 10 and will be used to determine the rate at which new zombies are spawned. This value will increase over time.
@@ -40,10 +43,10 @@ class Zombie
     # and then create that number of new zombies,
     newly_spawned_zombies = Array.new(newly_spawned_zombies)
     newly_spawned_zombies.each do |new_zombie|
-      new_zombie = Zombie.new(max_speed, max_strength)
+      new_zombie = Zombie.new(zombie_speed, zombie_strength)
       # Use @@max_speed and @@max_strength to generate random values for each new zombie's speed and strength.
-      max_speed = rand(@@max_speed)
-      max_strength = rand(@@max_strength)
+      zombie_speed = rand(@@max_speed)
+      zombie_strength = rand(@@max_strength)
       # adding each one to @@horde.
       @@horde << new_zombie
     end#each.do
