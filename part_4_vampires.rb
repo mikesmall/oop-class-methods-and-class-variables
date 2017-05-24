@@ -9,8 +9,8 @@ class Vampire
     @age = age
   end#initialize
 
-  def self.create
-    new_vampire = Vampire.new
+  def self.create(name, age)
+    new_vampire = Vampire.new(name, age)
     @@list_of_vampires << new_vampire
     return new_vampire
   end#@@create
@@ -42,10 +42,15 @@ class Vampire
     end#each
   end#@@sunset
 
+  def self.list_of_vampires
+    return @@list_of_vampires
+  end#self.list_of_vampires
+
 end#Vampire
 
 # Test outputs
 
 mike = Vampire.create("Mike", 38)
 erin = Vampire.create("Erin", 35)
-puts @@list_of_vampires
+mavis = Vampire.creat("Mavis", 12)
+puts Vampire.list_of_vampires.inspect
