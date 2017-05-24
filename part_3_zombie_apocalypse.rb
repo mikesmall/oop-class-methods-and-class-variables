@@ -85,7 +85,7 @@ class Zombie
   def survive_attack?
     # This instance method should use @@max_strength to generate a random number that represents how well you are able to fight off this zombie. This method should return true if your speed is greater than the zombie's and false otherwise.
     your_fighting_skills = rand(@@max_strength)
-    if your_fighting_skills > @zombie_strength  
+    if your_fighting_skills > @zombie_strength
       return true
     else
       return false
@@ -93,13 +93,36 @@ class Zombie
   end#survive_attack?
 
   def encounter
-    #     This instance method represents you coming across a zombie! This can end in three possible outcomes: 1. escaping unscathed 2. being killed by the zombie 3. catching the plague and becoming a zombie yourself.
-    #
-    # This method should call outrun_zombie? (see below) and survive_attack? (see also below) to determine which scenario applies. In the case that you are turned into a zombie (ie. you don't outrun the zombie but you aren't killed by it), create a new zombie object (that's you!) and add it to the @@horde.
-    #
+    # This method should call outrun_zombie? (see below) and survive_attack? (see also below) to determine which scenario applies.
+    # In the case that you are turned into a zombie (ie. you don't outrun the zombie but you aren't killed by it), create a new zombie object (that's you!) and add it to the @@horde.
+    if outrun_zombie? == true && survive_attack == true
+      puts "You escaped from the zombie!"
+    elsif outrun_zombie? == false && survive_attack == false
+      puts "You got murdered by the zombie!"
+    elsif outrun_zombie == false && survive_attack == true
+      your_former_self = Zombie.new
+      puts "You got turned into a zombie!"
+    end#if
     # In all three cases you should return a string that describes what happened to you in the encounter (eg. "You escaped!").
-
   end#encounter
 
-
 end#Zombie
+
+# Example outputs:
+puts Zombie.all.inspect # []
+Zombie.new_day
+puts Zombie.all.inspect # [#<Zombie:0x005626ecc5ebd0 @speed=4, @strength=0>, #<Zombie:0x005626ecc5eba8 @speed=0, @strength=4>, #<Zombie:0x005626ecc5eb80 @speed=4, @strength=4>]
+zombie1 = Zombie.all[0]
+zombie2 = Zombie.all[1]
+zombie3 = Zombie.all[2]
+puts zombie1.encounter # You are now a zombie
+puts zombie2.encounter # You died
+puts zombie3.encounter # You died
+Zombie.new_day
+puts Zombie.all.inspect # [#<Zombie:0x005626ecc5e1f8 @speed=0, @strength=0>, #<Zombie:0x005626ecc5e180 @speed=3, @strength=3>, #<Zombie:0x005626ecc5e158 @speed=1, @strength=2>, #<Zombie:0x005626ecc5e090 @speed=0, @strength=4>]
+zombie1 = Zombie.all[0]
+zombie2 = Zombie.all[1]
+zombie3 = Zombie.all[2]
+puts zombie1.encounter # You got away
+puts zombie2.encounter # You are now a zombie
+puts zombie3.encounter # You died
