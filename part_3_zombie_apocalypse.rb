@@ -49,7 +49,29 @@ class Zombie
     end#each.do
   end#self.spawn
 
+  def self.increase_plague_level
+    # This class method should generate a random number between 0 and 2 and increase @@plague_level by that amount.
+    plague_rising = rand(3)
+    @@plague_level += plague_rising
+  end#self.increase_plague_level
 
+  def self.some_die_off
+    # This class method should generate a random number between 0 and 10 and remove that number of zombies from @@horde (hint: you may want to check the Array docs for methods that could help you accomplish this).
+    rand(0..10).times do
+      @@horde.delete_at(rand(@@horde.count))
+    end#times-do
+  end#self.some_die_off
+
+  def self.new_day
+    # Every day some zombies die off (phew!),
+    some_die_off
+    # some new ones show up,
+    spawn
+    # and sometimes the zombie plague level increases.
+    increase_plague_level
+  end#self.new_day
+
+  
 
 
 end#Zombie
