@@ -27,6 +27,29 @@ class Zombie
       if @zombie_strength > @@max_strength
         @zombie_strength = @@default_strength
       end#if
-  end#initialize 
+  end#initialize
+
+  def self.all
+    # This class method should return the value of @@horde.
+    @@horde
+  end#self.all
+
+  def self.spawn
+    # This class method should use @@plague_level to generate a random number
+    newly_spawned_zombies = rand(@@plague_level)
+    # and then create that number of new zombies,
+    newly_spawned_zombies = Array.new(newly_spawned_zombies)
+    newly_spawned_zombies.each do |new_zombie|
+      new_zombie = Zombie.new(max_speed, max_strength)
+      # Use @@max_speed and @@max_strength to generate random values for each new zombie's speed and strength.
+      max_speed = rand(@@max_speed)
+      max_strength = rand(@@max_strength)
+      # adding each one to @@horde.
+      @@horde << new_zombie
+    end#each.do
+  end#self.spawn
+
+
+
 
 end#Zombie
